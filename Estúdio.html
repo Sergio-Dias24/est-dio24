@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sérgio Octávio Dias | Tecnologia & Inovação</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-blue: #00d4ff;
+      --primary-purple: #8b5cf6;
+      --primary-cyan: #06ffa5;
+      --dark-bg: #0a0a0f;
+      --card-bg: rgba(15, 15, 25, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --text-light: #b8c5d1;
+      --text-white: #ffffff;
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-cyber: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 50%, #06ffa5 100%);
+      --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.3);
+      --shadow-purple: 0 0 30px rgba(139, 92, 246, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background */
+    .cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(6, 255, 165, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+      animation: cyberFloat 20s ease-in-out infinite;
+    }
+
+    .cyber-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 30s linear infinite;
+    }
+
+    @keyframes cyberFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(1deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Glassmorphism Effects */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      transition: all 0.4s ease;
+    }
+
+    .glass-card:hover {
+      border-color: var(--primary-cyan);
+      box-shadow: var(--shadow-glow);
+      transform: translateY(-5px);
+    }
+
+    /* Header */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+      to { filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.7)); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1.2rem 2.5rem;
+      background: var(--gradient-cyber);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .hero-cta:hover::before {
+      left: 100%;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-cyan);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-cyan);
+      background: rgba(6, 255, 165, 0.1);
+    }
+
+    .nav-links a:hover::before {
+      width: 80%;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 3rem;
+      text-align: center;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      width: 100px;
+      height: 3px;
+      background: var(--gradient-cyber);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Grid Layouts */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    /* Project Cards */
+    .project-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-cyan);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-icon {
+      font-size: 2.5rem;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .project-description {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--gradient-cyber);
+      color: white;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+    }
+
+    /* About Section */
+    .about-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-content p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .skills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .skill-tag {
+      background: var(--gradient-cyber);
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: white;
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Social Links */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--primary-cyan);
+      box-shadow: var(--shadow-glow);
+      transform: translateX(5px);
+    }
+
+    .social-icon {
+      font-size: 1.8rem;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      width: 50px;
+      text-align: center;
+    }
+
+    /* Project Containers */
+    .project-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .project-container.active {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--primary-cyan);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: white;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-cyan);
+      box-shadow: 0 0 15px rgba(6, 255, 165, 0.3);
+    }
+
+    /* Output Display */
+    .output {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      color: var(--primary-cyan);
+    }
+
+    /* Task List */
+    .task-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .task-item {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0.8rem 0;
+      padding: 1.2rem;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .task-item button {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-quote {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--primary-cyan);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      section {
+        padding: 4rem 1rem;
+      }
+    }
+
+    /* Utility Classes */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="cyber-bg"></div>
+  <div class="cyber-grid"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">SÉRGIO DIAS</div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#estudio24">Estúdio 24</a></li>
+        <li><a href="#jogo">Jogo</a></li>
+        <li><a href="#redes">Redes</a></li>
+        <li><a href="#contato">Contacto</a></li>
+      </ul>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header id="inicio">
+    <div class="hero-content">
+      <h1 class="hero-title">SÉRGIO OCTÁVIO DIAS</h1>
+      <p class="hero-subtitle">Criador Digital & Empreendedor Tecnológico</p>
+      <p class="hero-description">
+        Desenvolvendo soluções inovadoras com IA e automação que impactam positivamente a sociedade através da tecnologia.
+      </p>
+      <a href="#projetos" class="hero-cta">
+        <i class="fas fa-rocket"></i> Explorar Projetos
+      </a>
+    </div>
+  </header>
+
+  <!-- Sobre Section -->
+  <section id="sobre">
+    <h2 class="section-title">Sobre Mim</h2>
+    <div class="about-content">
+      <p>
+        Sou Sérgio Octávio Dias, criador digital, empreendedor tecnológico e desenvolvedor de projetos com IA e automação. 
+        Como fundador do Estúdio 24, dedico-me a criar soluções que impactam positivamente a sociedade por meio da tecnologia.
+      </p>
+      <p>
+        Minha missão é desenvolver ferramentas inovadoras que resolvem problemas reais, desde automações simples até sistemas 
+        complexos de inteligência artificial, sempre focando no progresso social e na democratização da tecnologia.
+      </p>
+      <div class="skills">
+        <span class="skill-tag">Inteligência Artificial</span>
+        <span class="skill-tag">Automação</span>
+        <span class="skill-tag">Desenvolvimento Web</span>
+        <span class="skill-tag">Streaming</span>
+        <span class="skill-tag">Empreendedorismo</span>
+        <span class="skill-tag">Inovação Social</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projetos Section -->
+  <section id="projetos">
+    <h2 class="section-title">Projetos Para a Sociedade</h2>
+    <div class="grid">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-home"></i></div>
+          <div class="project-title">Calculadora de Custo de Vida Familiar</div>
+        </div>
+        <div class="project-description">
+          Ferramenta inteligente para calcular e otimizar os custos de vida familiar, ajudando no planejamento financeiro.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('custo-vida')">
+          <i class="fas fa-calculator"></i> Calcular Agora
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-file-pdf"></i></div>
+          <div class="project-title">Gerador de Currículos Inteligente</div>
+        </div>
+        <div class="project-description">
+          Crie currículos profissionais em PDF com IA, otimizados para diferentes áreas e posições.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('gerador-cv')">
+          <i class="fas fa-magic"></i> Gerar CV
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-brain"></i></div>
+          <div class="project-title">Organizador de Tarefas com IA</div>
+        </div>
+        <div class="project-description">
+          Sistema inteligente que organiza e prioriza suas tarefas usando algoritmos de IA.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('organizador-ia')">
+          <i class="fas fa-tasks"></i> Organizar
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="project-title">Central de Estudos Online</div>
+        </div>
+        <div class="project-description">
+          Plataforma completa para estudos online com recursos interativos e acompanhamento de progresso.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('central-estudos')">
+          <i class="fas fa-book-open"></i> Estudar
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="project-title">Simulador de Ganhos Mobile</div>
+        </div>
+        <div class="project-description">
+          Simule diferentes estratégias de ganhos através do telemóvel e descubra novas oportunidades.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('ganhos-mobile')">
+          <i class="fas fa-chart-line"></i> Simular
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-robot"></i></div>
+          <div class="project-title">Painel de Automação Pessoal</div>
+        </div>
+        <div class="project-description">
+          Dashboard inteligente para automatizar tarefas pessoais e profissionais com IA.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('automacao-pessoal')">
+          <i class="fas fa-cogs"></i> Automatizar
+        </button>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="project-title">Sistema de Denúncia Anônima</div>
+        </div>
+        <div class="project-description">
+          Plataforma segura para denúncias anônimas, promovendo transparência e justiça social.
+        </div>
+        <button class="btn btn-primary" onclick="openProject('denuncia-anonima')">
+          <i class="fas fa-flag"></i> Denunciar
+        </button>
+      </div>
+    </div>
+
+    <!-- Project Containers -->
+    <div id="custo-vida" class="project-container">
+      <h3><i class="fas fa-home"></i> Calculadora de Custo de Vida Familiar</h3>
+      <p>Calcule e otimize os custos de vida da sua família com nossa ferramenta inteligente.</p>
+      <div class="form-group">
+        <label for="membros-familia">Número de Membros da Família:</label>
+        <input type="number" id="membros-familia" placeholder="Ex: 4" min="1" />
+      </div>
+      <div class="form-group">
+        <label for="renda-total">Renda Total Mensal:</label>
+        <input type="number" id="renda-total" placeholder="Ex: 5000" />
+      </div>
+      <div class="form-group">
+        <label for="gastos-habitacao">Gastos com Habitação:</label>
+        <input type="number" id="gastos-habitacao" placeholder="Ex: 1500" />
+      </div>
+      <div class="form-group">
+        <label for="gastos-alimentacao">Gastos com Alimentação:</label>
+        <input type="number" id="gastos-alimentacao" placeholder="Ex: 800" />
+      </div>
+      <div class="form-group">
+        <label for="gastos-transporte">Gastos com Transporte:</label>
+        <input type="number" id="gastos-transporte" placeholder="Ex: 400" />
+      </div>
+      <div class="form-group">
+        <label for="gastos-outros">Outros Gastos:</label>
+        <input type="number" id="gastos-outros" placeholder="Ex: 300" />
+      </div>
+      <button class="btn btn-primary" onclick="calcularCustoVida()">
+        <i class="fas fa-calculator"></i> Calcular Custo de Vida
+      </button>
+      <div class="output" id="resultado-custo-vida"></div>
+    </div>
+
+    <div id="gerador-cv" class="project-container">
+      <h3><i class="fas fa-file-pdf"></i> Gerador de Currículos Inteligente</h3>
+      <p>Crie seu currículo profissional em PDF com nossa IA especializada.</p>
+      <div class="form-group">
+        <label for="nome-completo-cv">Nome Completo:</label>
+        <input type="text" id="nome-completo-cv" placeholder="Seu nome completo" />
+      </div>
+      <div class="form-group">
+        <label for="email-cv">Email:</label>
+        <input type="email" id="email-cv" placeholder="seu.email@exemplo.com" />
+      </div>
+      <div class="form-group">
+        <label for="telefone-cv">Telefone:</label>
+        <input type="tel" id="telefone-cv" placeholder="+244 XXX XXX XXX" />
+      </div>
+      <div class="form-group">
+        <label for="area-atuacao">Área de Atuação:</label>
+        <select id="area-atuacao">
+          <option value="">Selecione uma área</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="saude">Saúde</option>
+          <option value="educacao">Educação</option>
+          <option value="financas">Finanças</option>
+          <option value="marketing">Marketing</option>
+          <option value="vendas">Vendas</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="experiencia-cv">Experiência Profissional:</label>
+        <textarea id="experiencia-cv" rows="4" placeholder="Descreva sua experiência profissional..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="formacao-cv">Formação Acadêmica:</label>
+        <textarea id="formacao-cv" rows="3" placeholder="Descreva sua formação acadêmica..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="habilidades-cv">Habilidades:</label>
+        <textarea id="habilidades-cv" rows="3" placeholder="Liste suas principais habilidades..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="gerarCurriculoIA()">
+        <i class="fas fa-magic"></i> Gerar Currículo com IA
+      </button>
+      <div class="output" id="resultado-cv"></div>
+    </div>
+
+    <div id="organizador-ia" class="project-container">
+      <h3><i class="fas fa-brain"></i> Organizador de Tarefas com IA</h3>
+      <p>Organize suas tarefas de forma inteligente com nossa IA especializada em produtividade.</p>
+      <div class="form-group">
+        <label for="nova-tarefa-ia">Nova Tarefa:</label>
+        <input type="text" id="nova-tarefa-ia" placeholder="Descreva sua tarefa..." />
+      </div>
+      <div class="form-group">
+        <label for="prioridade-tarefa">Prioridade:</label>
+        <select id="prioridade-tarefa">
+          <option value="baixa">Baixa</option>
+          <option value="media">Média</option>
+          <option value="alta">Alta</option>
+          <option value="urgente">Urgente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="categoria-tarefa">Categoria:</label>
+        <select id="categoria-tarefa">
+          <option value="trabalho">Trabalho</option>
+          <option value="pessoal">Pessoal</option>
+          <option value="estudos">Estudos</option>
+          <option value="saude">Saúde</option>
+          <option value="financas">Finanças</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="adicionarTarefaIA()">
+        <i class="fas fa-plus"></i> Adicionar Tarefa
+      </button>
+      <button class="btn btn-secondary" onclick="organizarTarefasIA()">
+        <i class="fas fa-brain"></i> Organizar com IA
+      </button>
+      <ul id="lista-tarefas-ia" class="task-list"></ul>
+      <div class="output" id="sugestoes-ia"></div>
+    </div>
+
+    <div id="central-estudos" class="project-container">
+      <h3><i class="fas fa-graduation-cap"></i> Central de Estudos Online</h3>
+      <p>Sua plataforma completa para estudos online com acompanhamento inteligente.</p>
+      <div class="form-group">
+        <label for="materia-estudo">Matéria de Estudo:</label>
+        <input type="text" id="materia-estudo" placeholder="Ex: Matemática, História, Programação..." />
+      </div>
+      <div class="form-group">
+        <label for="tempo-disponivel">Tempo Disponível (minutos):</label>
+        <input type="number" id="tempo-disponivel" placeholder="Ex: 60" min="15" max="480" />
+      </div>
+      <div class="form-group">
+        <label for="nivel-conhecimento">Nível de Conhecimento:</label>
+        <select id="nivel-conhecimento">
+          <option value="iniciante">Iniciante</option>
+          <option value="intermediario">Intermediário</option>
+          <option value="avancado">Avançado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="objetivo-estudo">Objetivo do Estudo:</label>
+        <select id="objetivo-estudo">
+          <option value="prova">Preparação para Prova</option>
+          <option value="concurso">Concurso Público</option>
+          <option value="trabalho">Aplicação no Trabalho</option>
+          <option value="hobby">Hobby/Interesse Pessoal</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="criarPlanoEstudos()">
+        <i class="fas fa-book-open"></i> Criar Plano de Estudos
+      </button>
+      <div class="output" id="plano-estudos"></div>
+    </div>
+
+    <div id="ganhos-mobile" class="project-container">
+      <h3><i class="fas fa-mobile-alt"></i> Simulador de Ganhos com Telemóvel</h3>
+      <p>Descubra diferentes estratégias para gerar renda usando seu telemóvel.</p>
+      <div class="form-group">
+        <label for="tempo-diario">Tempo Disponível por Dia (horas):</label>
+        <input type="number" id="tempo-diario" placeholder="Ex: 3" min="1" max="12" />
+      </div>
+      <div class="form-group">
+        <label for="habilidades-mobile">Suas Habilidades:</label>
+        <select id="habilidades-mobile" multiple>
+          <option value="redes-sociais">Redes Sociais</option>
+          <option value="fotografia">Fotografia</option>
+          <option value="escrita">Escrita</option>
+          <option value="vendas">Vendas</option>
+          <option value="ensino">Ensino</option>
+          <option value="design">Design</option>
+          <option value="programacao">Programação</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="investimento-inicial">Investimento Inicial Disponível:</label>
+        <input type="number" id="investimento-inicial" placeholder="Ex: 1000" />
+      </div>
+      <div class="form-group">
+        <label for="meta-mensal">Meta de Ganho Mensal:</label>
+        <input type="number" id="meta-mensal" placeholder="Ex: 2000" />
+      </div>
+      <button class="btn btn-primary" onclick="simularGanhosMobile()">
+        <i class="fas fa-chart-line"></i> Simular Estratégias
+      </button>
+      <div class="output" id="estrategias-ganhos"></div>
+    </div>
+
+    <div id="automacao-pessoal" class="project-container">
+      <h3><i class="fas fa-robot"></i> Painel de Automação Pessoal com IA</h3>
+      <p>Configure automações inteligentes para otimizar sua rotina pessoal e profissional.</p>
+      <div class="form-group">
+        <label for="tipo-automacao">Tipo de Automação:</label>
+        <select id="tipo-automacao">
+          <option value="emails">Gestão de Emails</option>
+          <option value="agenda">Organização de Agenda</option>
+          <option value="financas">Controle Financeiro</option>
+          <option value="redes-sociais">Redes Sociais</option>
+          <option value="backup">Backup de Dados</option>
+          <option value="lembretes">Lembretes Inteligentes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="frequencia-automacao">Frequência:</label>
+        <select id="frequencia-automacao">
+          <option value="diaria">Diária</option>
+          <option value="semanal">Semanal</option>
+          <option value="mensal">Mensal</option>
+          <option value="personalizada">Personalizada</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="descricao-automacao">Descrição da Automação:</label>
+        <textarea id="descricao-automacao" rows="3" placeholder="Descreva o que você gostaria de automatizar..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="criarAutomacao()">
+        <i class="fas fa-cogs"></i> Criar Automação
+      </button>
+      <div class="output" id="resultado-automacao"></div>
+    </div>
+
+    <div id="denuncia-anonima" class="project-container">
+      <h3><i class="fas fa-shield-alt"></i> Sistema de Denúncia Anônima</h3>
+      <p>Reporte irregularidades de forma segura e anônima. Sua identidade será protegida.</p>
+      <div class="form-group">
+        <label for="tipo-denuncia-anonima">Tipo de Denúncia:</label>
+        <select id="tipo-denuncia-anonima">
+          <option value="">Selecione o tipo</option>
+          <option value="corrupcao">Corrupção</option>
+          <option value="fraude">Fraude</option>
+          <option value="assedio">Assédio</option>
+          <option value="discriminacao">Discriminação</option>
+          <option value="violencia">Violência</option>
+          <option value="ambiental">Crime Ambiental</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="local-ocorrencia">Local da Ocorrência:</label>
+        <input type="text" id="local-ocorrencia" placeholder="Cidade, bairro ou instituição" />
+      </div>
+      <div class="form-group">
+        <label for="data-ocorrencia">Data da Ocorrência:</label>
+        <input type="date" id="data-ocorrencia" />
+      </div>
+      <div class="form-group">
+        <label for="descricao-denuncia-anonima">Descrição Detalhada:</label>
+        <textarea id="descricao-denuncia-anonima" rows="6" placeholder="Descreva os fatos de forma detalhada. Inclua nomes, datas, locais e qualquer informação relevante..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="evidencias">Evidências (opcional):</label>
+        <textarea id="evidencias" rows="3" placeholder="Descreva evidências disponíveis (documentos, fotos, vídeos, testemunhas)..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="enviarDenunciaAnonima()">
+        <i class="fas fa-flag"></i> Enviar Denúncia Anônima
+      </button>
+      <div class="output" id="resultado-denuncia-anonima"></div>
+    </div>
+  </section>
+
+  <!-- Estúdio 24 Section -->
+  <section id="estudio24">
+    <h2 class="section-title">Estúdio 24 - Voz Digital do Futuro</h2>
+    <div class="glass-card" style="padding: 3rem; text-align: center;">
+      <div style="font-size: 4rem; margin-bottom: 2rem;">
+        <i class="fas fa-microphone" style="background: var(--gradient-cyber); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+      </div>
+      <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary-cyan);">Informação Séria, Conteúdo Educativo</h3>
+      <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
+        O Estúdio 24 é nossa plataforma de comunicação dedicada a fornecer informação de qualidade, 
+        conteúdo educativo e entretenimento inteligente. Focamos em tecnologia, inovação e impacto social.
+      </p>
+      <div style="margin-bottom: 2rem;">
+        <h4 style="color: var(--primary-cyan); margin-bottom: 1rem;">Nosso Conteúdo:</h4>
+        <div class="grid-3">
+          <div class="glass-card" style="padding: 1.5rem;">
+            <i class="fas fa-video" style="font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem;"></i>
+            <h5>Vídeos Educativos</h5>
+            <p>Conteúdo sobre tecnologia, IA e inovação</p>
+          </div>
+          <div class="glass-card" style="padding: 1.5rem;">
+            <i class="fas fa-podcast" style="font-size: 2rem; color: var(--primary-purple); margin-bottom: 1rem;"></i>
+            <h5>Podcasts</h5>
+            <p>Discussões sobre o futuro digital</p>
+          </div>
+          <div class="glass-card" style="padding: 1.5rem;">
+            <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--primary-cyan); margin-bottom: 1rem;"></i>
+            <h5>Dicas Digitais</h5>
+            <p>Estratégias para o mundo digital</p>
+          </div>
+        </div>
+      </div>
+      <a href="https://whatsapp.com/channel/0029Vb5h9M5GZNCj3fleW62I" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+        <i class="fab fa-whatsapp"></i> Seguir no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Jogo Section -->
+  <section id="jogo">
+    <h2 class="section-title">CyberRush: Streaming Showdown</h2>
+    <div class="glass-card" style="padding: 2rem; text-align: center;">
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-light);">
+        Jogo arcade futurista desenvolvido especialmente para streaming. Desafie-se e entretenha sua audiência!
+      </p>
+      <div id="game-container" style="background: #000; border-radius: 15px; margin: 2rem auto; max-width: 800px; height: 400px; position: relative; border: 2px solid var(--primary-cyan); overflow: hidden;">
+        <canvas id="gameCanvas" width="800" height="400" style="display: none; border-radius: 15px;"></canvas>
+        <div id="game-menu" style="text-align: center; color: var(--primary-cyan); padding: 2rem; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+          <i class="fas fa-gamepad" style="font-size: 4rem; margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+          <h3 style="margin-bottom: 1rem;">CyberRush: Streaming Showdown</h3>
+          <p style="margin-bottom: 2rem;">Jogo arcade futurista para streaming!</p>
+          <button class="btn btn-primary" onclick="iniciarJogo()" style="margin-top: 1rem;">
+            <i class="fas fa-play"></i> Iniciar Jogo
+          </button>
+        </div>
+        <div id="game-hud" style="position: absolute; top: 10px; left: 10px; right: 10px; display: none; z-index: 10;">
+          <div style="display: flex; justify-content: space-between; color: var(--primary-cyan); font-weight: bold;">
+            <div>Pontos: <span id="score">0</span></div>
+            <div>Vidas: <span id="lives">3</span></div>
+            <div>Nível: <span id="level">1</span></div>
+          </div>
+        </div>
+        <div id="game-over" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); display: none; flex-direction: column; justify-content: center; align-items: center; color: var(--primary-cyan);">
+          <h3 style="margin-bottom: 1rem;">Game Over!</h3>
+          <p style="margin-bottom: 1rem;">Pontuação Final: <span id="final-score">0</span></p>
+          <button class="btn btn-primary" onclick="reiniciarJogo()">
+            <i class="fas fa-redo"></i> Jogar Novamente
+          </button>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top: 2rem;">
+        <div class="glass-card" style="padding: 1.5rem;">
+          <i class="fas fa-trophy" style="font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem;"></i>
+          <h5>Sistema de Pontos</h5>
+          <p>Compete por recordes e rankings</p>
+        </div>
+        <div class="glass-card" style="padding: 1.5rem;">
+          <i class="fas fa-eye" style="font-size: 2rem; color: var(--primary-purple); margin-bottom: 1rem;"></i>
+          <h5>Modo Espectador</h5>
+          <p>Perfeito para streaming ao vivo</p>
+        </div>
+        <div class="glass-card" style="padding: 1.5rem;">
+          <i class="fas fa-bolt" style="font-size: 2rem; color: var(--primary-cyan); margin-bottom: 1rem;"></i>
+          <h5>Ação Intensa</h5>
+          <p>Adrenalina e desafios constantes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Redes Sociais Section -->
+  <section id="redes">
+    <h2 class="section-title">Redes Sociais</h2>
+    <div class="social-grid">
+      <a href="https://twitter.com/SergioDias24" target="_blank" class="social-link">
+        <i class="fab fa-twitter social-icon"></i>
+        <div>
+          <strong>Twitter</strong>
+          <p>@SergioDias24</p>
+        </div>
+      </a>
+      <a href="https://tiktok.com/@sergio-dias24" target="_blank" class="social-link">
+        <i class="fab fa-tiktok social-icon"></i>
+        <div>
+          <strong>TikTok</strong>
+          <p>Sérgio-Dias24</p>
+        </div>
+      </a>
+      <a href="https://discord.com/users/sergio-dias-24" target="_blank" class="social-link">
+        <i class="fab fa-discord social-icon"></i>
+        <div>
+          <strong>Discord</strong>
+          <p>Sérgio Dias-24</p>
+        </div>
+      </a>
+      <a href="https://twitch.tv/SergioDias998646881" target="_blank" class="social-link">
+        <i class="fab fa-twitch social-icon"></i>
+        <div>
+          <strong>Twitch</strong>
+          <p>SergioDias998646881</p>
+        </div>
+      </a>
+      <a href="https://facebook.com/sergio.dias" target="_blank" class="social-link">
+        <i class="fab fa-facebook social-icon"></i>
+        <div>
+          <strong>Facebook</strong>
+          <p>Sérgio Dias</p>
+        </div>
+      </a>
+      <a href="https://wa.me/244998646881" target="_blank" class="social-link">
+        <i class="fab fa-whatsapp social-icon"></i>
+        <div>
+          <strong>WhatsApp</strong>
+          <p>+244 998646881</p>
+        </div>
+      </a>
+      <a href="https://youtube.com/@sergio-dias-i3p" target="_blank" class="social-link">
+        <i class="fab fa-youtube social-icon"></i>
+        <div>
+          <strong>YouTube</strong>
+          <p>@Sérgio Dias-i3p</p>
+        </div>
+      </a>
+      <a href="https://instagram.com/sergio.dias.24" target="_blank" class="social-link">
+        <i class="fab fa-instagram social-icon"></i>
+        <div>
+          <strong>Instagram</strong>
+          <p>@sergio.dias.24</p>
+        </div>
+      </a>
+      <a href="https://threads.net/@sergio.dias.24" target="_blank" class="social-link">
+        <i class="fab fa-threads social-icon"></i>
+        <div>
+          <strong>Threads</strong>
+          <p>@sergio.dias.24</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contacto Section -->
+  <section id="contato">
+    <h2 class="section-title">Contacto</h2>
+    <div class="glass-card" style="padding: 3rem; text-align: center; max-width: 600px; margin: 0 auto;">
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-light);">
+        Entre em contacto para colaborações, projetos ou dúvidas sobre tecnologia e inovação.
+      </p>
+      <div style="margin-bottom: 2rem;">
+        <a href="mailto:sergio@estudio24.com" class="btn btn-primary" style="margin: 0.5rem;">
+          <i class="fas fa-envelope"></i> Email Profissional
+        </a>
+        <a href="https://wa.me/244998646881" target="_blank" class="btn btn-secondary" style="margin: 0.5rem;">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+      <p style="color: var(--text-light); font-size: 0.9rem;">
+        Resposta garantida em até 24 horas
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p class="footer-quote">"Tecnologia, criatividade e impacto social em um só lugar."</p>
+      <p>&copy; 2025 Sérgio Octávio Dias. Todos os direitos reservados.</p>
+      <div style="margin-top: 1.5rem;">
+        <a href="#" style="color: var(--text-light); text-decoration: none; margin: 0 1rem;">Termos de Uso</a>
+        <a href="#" style="color: var(--text-light); text-decoration: none; margin: 0 1rem;">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    // Project Management
+    function openProject(projectId) {
+      // Hide all project containers
+      document.querySelectorAll('.project-container').forEach(container => {
+        container.classList.remove('active');
+      });
+
+      // Show selected project container
+      document.getElementById(projectId).classList.add('active');
+      
+      // Scroll to project container
+      document.getElementById(projectId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Calculadora de Custo de Vida
+    function calcularCustoVida() {
+      const membros = parseInt(document.getElementById('membros-familia').value);
+      const renda = parseFloat(document.getElementById('renda-total').value);
+      const habitacao = parseFloat(document.getElementById('gastos-habitacao').value);
+      const alimentacao = parseFloat(document.getElementById('gastos-alimentacao').value);
+      const transporte = parseFloat(document.getElementById('gastos-transporte').value);
+      const outros = parseFloat(document.getElementById('gastos-outros').value);
+
+      if (!membros || !renda || !habitacao || !alimentacao || !transporte || !outros) {
+        document.getElementById('resultado-custo-vida').innerText = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      const totalGastos = habitacao + alimentacao + transporte + outros;
+      const saldo = renda - totalGastos;
+      const custoPorPessoa = totalGastos / membros;
+      const percentualGastos = (totalGastos / renda) * 100;
+
+      let resultado = `=== ANÁLISE DE CUSTO DE VIDA FAMILIAR ===\n\n`;
+      resultado += `👥 Membros da Família: ${membros}\n`;
+      resultado += `💰 Renda Total: ${renda.toFixed(2)} AOA\n\n`;
+      resultado += `📊 DISTRIBUIÇÃO DE GASTOS:\n`;
+      resultado += `🏠 Habitação: ${habitacao.toFixed(2)} AOA (${((habitacao/totalGastos)*100).toFixed(1)}%)\n`;
+      resultado += `🍽️ Alimentação: ${alimentacao.toFixed(2)} AOA (${((alimentacao/totalGastos)*100).toFixed(1)}%)\n`;
+      resultado += `🚗 Transporte: ${transporte.toFixed(2)} AOA (${((transporte/totalGastos)*100).toFixed(1)}%)\n`;
+      resultado += `💳 Outros: ${outros.toFixed(2)} AOA (${((outros/totalGastos)*100).toFixed(1)}%)\n\n`;
+      resultado += `📈 RESUMO FINANCEIRO:\n`;
+      resultado += `💸 Total de Gastos: ${totalGastos.toFixed(2)} AOA\n`;
+      resultado += `💵 Saldo Restante: ${saldo.toFixed(2)} AOA\n`;
+      resultado += `👤 Custo por Pessoa: ${custoPorPessoa.toFixed(2)} AOA\n`;
+      resultado += `📊 Percentual de Gastos: ${percentualGastos.toFixed(1)}%\n\n`;
+
+      if (saldo > 0) {
+        resultado += `✅ SITUAÇÃO: POSITIVA\n`;
+        resultado += `Parabéns! Sua família está economizando ${saldo.toFixed(2)} AOA por mês.\n\n`;
+        resultado += `💡 SUGESTÕES:\n`;
+        resultado += `• Considere investir o saldo em poupança ou investimentos\n`;
+        resultado += `• Crie um fundo de emergência\n`;
+        resultado += `• Planeje gastos futuros (férias, educação, etc.)`;
+      } else if (saldo < 0) {
+        resultado += `⚠️ SITUAÇÃO: ATENÇÃO NECESSÁRIA\n`;
+        resultado += `Seus gastos excedem a renda em ${Math.abs(saldo).toFixed(2)} AOA.\n\n`;
+        resultado += `🔧 RECOMENDAÇÕES URGENTES:\n`;
+        resultado += `• Revise e corte gastos desnecessários\n`;
+        resultado += `• Procure fontes de renda adicional\n`;
+        resultado += `• Renegocie contratos (internet, seguros, etc.)\n`;
+        resultado += `• Considere mudanças no estilo de vida`;
+      } else {
+        resultado += `⚖️ SITUAÇÃO: EQUILIBRADA\n`;
+        resultado += `Seus gastos estão exatamente iguais à renda.\n\n`;
+        resultado += `⚠️ CUIDADOS:\n`;
+        resultado += `• Crie uma reserva de emergência\n`;
+        resultado += `• Monitore gastos extras\n`;
+        resultado += `• Busque oportunidades de economia`;
+      }
+
+      document.getElementById('resultado-custo-vida').innerText = resultado;
+    }
+
+    // Gerador de Currículo com IA
+    function gerarCurriculoIA() {
+      const nome = document.getElementById('nome-completo-cv').value;
+      const email = document.getElementById('email-cv').value;
+      const telefone = document.getElementById('telefone-cv').value;
+      const area = document.getElementById('area-atuacao').value;
+      const experiencia = document.getElementById('experiencia-cv').value;
+      const formacao = document.getElementById('formacao-cv').value;
+      const habilidades = document.getElementById('habilidades-cv').value;
+
+      if (!nome || !email || !telefone || !area || !experiencia || !formacao || !habilidades) {
+        document.getElementById('resultado-cv').innerText = 'Por favor, preencha todos os campos para gerar o currículo.';
+        return;
+      }
+
+      let curriculo = `=== CURRÍCULO PROFISSIONAL GERADO COM IA ===\n\n`;
+      curriculo += `👤 DADOS PESSOAIS\n`;
+      curriculo += `Nome: ${nome}\n`;
+      curriculo += `Email: ${email}\n`;
+      curriculo += `Telefone: ${telefone}\n`;
+      curriculo += `Área de Atuação: ${area.charAt(0).toUpperCase() + area.slice(1)}\n\n`;
+      
+      curriculo += `🎯 OBJETIVO PROFISSIONAL\n`;
+      switch(area) {
+        case 'tecnologia':
+          curriculo += `Profissional de tecnologia em busca de oportunidades para aplicar conhecimentos em desenvolvimento, inovação e soluções digitais.\n\n`;
+          break;
+        case 'saude':
+          curriculo += `Profissional da saúde comprometido com o bem-estar e qualidade de vida, buscando contribuir para o cuidado e tratamento de pacientes.\n\n`;
+          break;
+        case 'educacao':
+          curriculo += `Educador dedicado ao desenvolvimento do conhecimento e formação de indivíduos, com foco em metodologias inovadoras de ensino.\n\n`;
+          break;
+        default:
+          curriculo += `Profissional qualificado em busca de oportunidades para aplicar conhecimentos e contribuir para o crescimento organizacional.\n\n`;
+      }
+
+      curriculo += `💼 EXPERIÊNCIA PROFISSIONAL\n`;
+      curriculo += `${experiencia}\n\n`;
+      
+      curriculo += `🎓 FORMAÇÃO ACADÊMICA\n`;
+      curriculo += `${formacao}\n\n`;
+      
+      curriculo += `🛠️ HABILIDADES E COMPETÊNCIAS\n`;
+      curriculo += `${habilidades}\n\n`;
+      
+      curriculo += `✨ DIFERENCIAIS COMPETITIVOS (Sugeridos pela IA)\n`;
+      switch(area) {
+        case 'tecnologia':
+          curriculo += `• Conhecimento em tecnologias emergentes\n`;
+          curriculo += `• Capacidade de adaptação a novas ferramentas\n`;
+          curriculo += `• Pensamento analítico e resolução de problemas\n`;
+          curriculo += `• Trabalho em equipe ágil\n`;
+          break;
+        case 'saude':
+          curriculo += `• Empatia e cuidado com pacientes\n`;
+          curriculo += `• Conhecimento em protocolos de segurança\n`;
+          curriculo += `• Capacidade de trabalho sob pressão\n`;
+          curriculo += `• Atualização constante em práticas médicas\n`;
+          break;
+        default:
+          curriculo += `• Proatividade e iniciativa\n`;
+          curriculo += `• Comunicação eficaz\n`;
+          curriculo += `• Capacidade de liderança\n`;
+          curriculo += `• Foco em resultados\n`;
+      }
+      
+      curriculo += `\n📄 Este currículo foi otimizado com IA para destacar seus pontos fortes na área de ${area}.\n`;
+      curriculo += `💡 Dica: Personalize ainda mais este currículo para cada vaga específica.`;
+
+      document.getElementById('resultado-cv').innerText = curriculo;
+    }
+
+    // Organizador de Tarefas com IA
+    let tarefasIA = [];
+
+    function adicionarTarefaIA() {
+      const tarefa = document.getElementById('nova-tarefa-ia').value;
+      const prioridade = document.getElementById('prioridade-tarefa').value;
+      const categoria = document.getElementById('categoria-tarefa').value;
+
+      if (!tarefa) {
+        alert('Por favor, digite uma tarefa.');
+        return;
+      }
+
+      const novaTarefa = {
+        id: Date.now(),
+        texto: tarefa,
+        prioridade: prioridade,
+        categoria: categoria,
+        concluida: false
+      };
+
+      tarefasIA.push(novaTarefa);
+      atualizarListaTarefasIA();
+      document.getElementById('nova-tarefa-ia').value = '';
+    }
+
+    function atualizarListaTarefasIA() {
+      const lista = document.getElementById('lista-tarefas-ia');
+      lista.innerHTML = '';
+
+      tarefasIA.forEach(tarefa => {
+        const item = document.createElement('li');
+        item.className = 'task-item';
+        
+        const prioridadeIcon = {
+          'baixa': '🟢',
+          'media': '🟡',
+          'alta': '🟠',
+          'urgente': '🔴'
+        };
+
+        item.innerHTML = `
+          <div>
+            <span>${prioridadeIcon[tarefa.prioridade]} <strong>[${tarefa.categoria.toUpperCase()}]</strong> ${tarefa.texto}</span>
+          </div>
+          <button onclick="removerTarefaIA(${tarefa.id})">Remover</button>
+        `;
+        
+        lista.appendChild(item);
+      });
+    }
+
+    function removerTarefaIA(id) {
+      tarefasIA = tarefasIA.filter(tarefa => tarefa.id !== id);
+      atualizarListaTarefasIA();
+    }
+
+    function organizarTarefasIA() {
+      if (tarefasIA.length === 0) {
+        document.getElementById('sugestoes-ia').innerText = 'Adicione algumas tarefas primeiro para receber sugestões da IA.';
+        return;
+      }
+
+      // Organizar por prioridade
+      const prioridadeOrdem = { 'urgente': 4, 'alta': 3, 'media': 2, 'baixa': 1 };
+      tarefasIA.sort((a, b) => prioridadeOrdem[b.prioridade] - prioridadeOrdem[a.prioridade]);
+
+      let sugestoes = `🤖 ANÁLISE E SUGESTÕES DA IA\n\n`;
+      sugestoes += `📊 ESTATÍSTICAS:\n`;
+      sugestoes += `• Total de tarefas: ${tarefasIA.length}\n`;
+      
+      const categorias = {};
+      const prioridades = {};
+      
+      tarefasIA.forEach(tarefa => {
+        categorias[tarefa.categoria] = (categorias[tarefa.categoria] || 0) + 1;
+        prioridades[tarefa.prioridade] = (prioridades[tarefa.prioridade] || 0) + 1;
+      });
+
+      sugestoes += `• Categorias mais frequentes: ${Object.keys(categorias).join(', ')}\n`;
+      sugestoes += `• Tarefas urgentes/alta prioridade: ${(prioridades['urgente'] || 0) + (prioridades['alta'] || 0)}\n\n`;
+
+      sugestoes += `🎯 RECOMENDAÇÕES DE ORGANIZAÇÃO:\n`;
+      
+      if (prioridades['urgente'] > 0) {
+        sugestoes += `⚡ FOQUE PRIMEIRO: Você tem ${prioridades['urgente']} tarefa(s) urgente(s)\n`;
+      }
+      
+      if (categorias['trabalho'] > categorias['pessoal']) {
+        sugestoes += `💼 EQUILÍBRIO: Considere dedicar mais tempo para tarefas pessoais\n`;
+      }
+      
+      if (tarefasIA.length > 10) {
+        sugestoes += `📝 SIMPLIFICAÇÃO: Muitas tarefas! Considere dividir em subtarefas menores\n`;
+      }
+
+      sugestoes += `\n⏰ CRONOGRAMA SUGERIDO:\n`;
+      sugestoes += `1. Manhã: Tarefas urgentes e de alta prioridade\n`;
+      sugestoes += `2. Tarde: Tarefas de trabalho e estudos\n`;
+      sugestoes += `3. Noite: Tarefas pessoais e de baixa prioridade\n\n`;
+      
+      sugestoes += `💡 DICA DA IA: Use a técnica Pomodoro (25min foco + 5min pausa) para maior produtividade!`;
+
+      document.getElementById('sugestoes-ia').innerText = sugestoes;
+      atualizarListaTarefasIA();
+    }
+
+    // Central de Estudos
+    function criarPlanoEstudos() {
+      const materia = document.getElementById('materia-estudo').value;
+      const tempo = parseInt(document.getElementById('tempo-disponivel').value);
+      const nivel = document.getElementById('nivel-conhecimento').value;
+      const objetivo = document.getElementById('objetivo-estudo').value;
+
+      if (!materia || !tempo || !nivel || !objetivo) {
+        document.getElementById('plano-estudos').innerText = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      let plano = `📚 PLANO DE ESTUDOS PERSONALIZADO\n\n`;
+      plano += `📖 Matéria: ${materia}\n`;
+      plano += `⏱️ Tempo Disponível: ${tempo} minutos\n`;
+      plano += `📊 Nível: ${nivel.charAt(0).toUpperCase() + nivel.slice(1)}\n`;
+      plano += `🎯 Objetivo: ${objetivo}\n\n`;
+
+      // Divisão do tempo baseada no nível
+      let tempoTeoria, tempoPratica, tempoRevisao;
+      
+      switch(nivel) {
+        case 'iniciante':
+          tempoTeoria = Math.floor(tempo * 0.6);
+          tempoPratica = Math.floor(tempo * 0.3);
+          tempoRevisao = tempo - tempoTeoria - tempoPratica;
+          break;
+        case 'intermediario':
+          tempoTeoria = Math.floor(tempo * 0.4);
+          tempoPratica = Math.floor(tempo * 0.4);
+          tempoRevisao = tempo - tempoTeoria - tempoPratica;
+          break;
+        case 'avancado':
+          tempoTeoria = Math.floor(tempo * 0.2);
+          tempoPratica = Math.floor(tempo * 0.6);
+          tempoRevisao = tempo - tempoTeoria - tempoPratica;
+          break;
+      }
+
+      plano += `⏰ CRONOGRAMA DE ESTUDOS:\n\n`;
+      plano += `1️⃣ TEORIA (${tempoTeoria} min)\n`;
+      
+      if (nivel === 'iniciante') {
+        plano += `   • Conceitos fundamentais de ${materia}\n`;
+        plano += `   • Definições básicas e terminologia\n`;
+        plano += `   • Exemplos simples e introdutórios\n`;
+      } else if (nivel === 'intermediario') {
+        plano += `   • Revisão de conceitos importantes\n`;
+        plano += `   • Aprofundamento em tópicos específicos\n`;
+        plano += `   • Conexões entre diferentes conceitos\n`;
+      } else {
+        plano += `   • Tópicos avançados e especializados\n`;
+        plano += `   • Análise crítica de teorias\n`;
+        plano += `   • Pesquisa de desenvolvimentos recentes\n`;
+      }
+
+      plano += `\n2️⃣ PRÁTICA (${tempoPratica} min)\n`;
+      plano += `   • Exercícios práticos\n`;
+      plano += `   • Resolução de problemas\n`;
+      plano += `   • Aplicação dos conceitos estudados\n`;
+
+      plano += `\n3️⃣ REVISÃO (${tempoRevisao} min)\n`;
+      plano += `   • Resumo dos pontos principais\n`;
+      plano += `   • Identificação de dúvidas\n`;
+      plano += `   • Planejamento da próxima sessão\n\n`;
+
+      // Sugestões específicas por objetivo
+      plano += `🎯 ESTRATÉGIAS PARA SEU OBJETIVO:\n`;
+      switch(objetivo) {
+        case 'prova':
+          plano += `   • Foque em exercícios similares à prova\n`;
+          plano += `   • Pratique gestão de tempo\n`;
+          plano += `   • Revise tópicos mais cobrados\n`;
+          break;
+        case 'concurso':
+          plano += `   • Estude editais e provas anteriores\n`;
+          plano += `   • Faça simulados regulares\n`;
+          plano += `   • Mantenha disciplina de estudos diária\n`;
+          break;
+        case 'trabalho':
+          plano += `   • Foque em aplicações práticas\n`;
+          plano += `   • Busque casos reais da área\n`;
+          plano += `   • Desenvolva projetos práticos\n`;
+          break;
+        case 'hobby':
+          plano += `   • Explore aspectos que mais interessam\n`;
+          plano += `   • Conecte com comunidades da área\n`;
+          plano += `   • Experimente diferentes abordagens\n`;
+          break;
+      }
+
+      plano += `\n📝 RECURSOS RECOMENDADOS:\n`;
+      plano += `   • Livros especializados em ${materia}\n`;
+      plano += `   • Vídeos educativos online\n`;
+      plano += `   • Exercícios práticos\n`;
+      plano += `   • Grupos de estudo\n\n`;
+      
+      plano += `💡 DICA: Mantenha consistência! É melhor estudar ${tempo} minutos todos os dias do que muitas horas esporadicamente.`;
+
+      document.getElementById('plano-estudos').innerText = plano;
+    }
+
+    // Simulador de Ganhos Mobile
+    function simularGanhosMobile() {
+      const tempo = parseInt(document.getElementById('tempo-diario').value);
+      const habilidadesSelect = document.getElementById('habilidades-mobile');
+      const habilidades = Array.from(habilidadesSelect.selectedOptions).map(option => option.value);
+      const investimento = parseFloat(document.getElementById('investimento-inicial').value) || 0;
+      const meta = parseFloat(document.getElementById('meta-mensal').value);
+
+      if (!tempo || habilidades.length === 0 || !meta) {
+        document.getElementById('estrategias-ganhos').innerText = 'Por favor, preencha todos os campos obrigatórios.';
+        return;
+      }
+
+      let estrategias = `📱 ESTRATÉGIAS DE GANHOS COM TELEMÓVEL\n\n`;
+      estrategias += `⏰ Tempo Disponível: ${tempo} horas/dia\n`;
+      estrategias += `🎯 Meta Mensal: ${meta.toFixed(2)} AOA\n`;
+      estrategias += `💰 Investimento Inicial: ${investimento.toFixed(2)} AOA\n\n`;
+
+      estrategias += `🚀 ESTRATÉGIAS RECOMENDADAS:\n\n`;
+
+      // Estratégias baseadas nas habilidades
+      if (habilidades.includes('redes-sociais')) {
+        estrategias += `📱 GESTÃO DE REDES SOCIAIS\n`;
+        estrategias += `   • Ganho estimado: 500-2000 AOA/mês\n`;
+        estrategias += `   • Tempo necessário: 2-3 horas/dia\n`;
+        estrategias += `   • Como começar: Ofereça serviços para pequenos negócios\n`;
+        estrategias += `   • Investimento: Ferramentas de agendamento (${Math.min(investimento * 0.1, 200)} AOA)\n\n`;
+      }
+
+      if (habilidades.includes('fotografia')) {
+        estrategias += `📸 FOTOGRAFIA MOBILE\n`;
+        estrategias += `   • Ganho estimado: 800-3000 AOA/mês\n`;
+        estrategias += `   • Tempo necessário: 3-4 horas/dia\n`;
+        estrategias += `   • Como começar: Venda fotos em bancos de imagem\n`;
+        estrategias += `   • Investimento: Apps de edição premium (${Math.min(investimento * 0.05, 100)} AOA)\n\n`;
+      }
+
+      if (habilidades.includes('escrita')) {
+        estrategias += `✍️ REDAÇÃO E COPYWRITING\n`;
+        estrategias += `   • Ganho estimado: 600-2500 AOA/mês\n`;
+        estrategias += `   • Tempo necessário: 2-3 horas/dia\n`;
+        estrategias += `   • Como começar: Freelances em plataformas online\n`;
+        estrategias += `   • Investimento: Cursos de copywriting (${Math.min(investimento * 0.2, 500)} AOA)\n\n`;
+      }
+
+      if (habilidades.includes('vendas')) {
+        estrategias += `💼 VENDAS ONLINE\n`;
+        estrategias += `   • Ganho estimado: 1000-5000 AOA/mês\n`;
+        estrategias += `   • Tempo necessário: 4-5 horas/dia\n`;
+        estrategias += `   • Como começar: Revenda de produtos digitais\n`;
+        estrategias += `   • Investimento: Stock inicial (${Math.min(investimento * 0.6, 2000)} AOA)\n\n`;
+      }
+
+      if (habilidades.includes('ensino')) {
+        estrategias += `🎓 ENSINO ONLINE\n`;
+        estrategias += `   • Ganho estimado: 800-3500 AOA/mês\n`;
+        estrategias += `   • Tempo necessário: 3-4 horas/dia\n`;
+        estrategias += `   • Como começar: Aulas particulares via videochamada\n`;
+        estrategias += `   • Investimento: Plataforma de ensino (${Math.min(investimento * 0.15, 300)} AOA)\n\n`;
+      }
+
+      // Análise de viabilidade
+      estrategias += `📊 ANÁLISE DE VIABILIDADE:\n\n`;
+      
+      const ganhoMinimo = habilidades.length * 500;
+      const ganhoMaximo = habilidades.length * 2500;
+      
+      if (meta <= ganhoMaximo) {
+        estrategias += `✅ META ALCANÇÁVEL!\n`;
+        estrategias += `Com suas habilidades, você pode ganhar entre ${ganhoMinimo}-${ganhoMaximo} AOA/mês.\n\n`;
+      } else {
+        estrategias += `⚠️ META AMBICIOSA!\n`;
+        estrategias += `Sua meta está acima do estimado. Considere:\n`;
+        estrategias += `• Desenvolver mais habilidades\n`;
+        estrategias += `• Aumentar o tempo dedicado\n`;
+        estrategias += `• Combinar múltiplas estratégias\n\n`;
+      }
+
+      estrategias += `📈 PLANO DE AÇÃO (30 DIAS):\n`;
+      estrategias += `Semana 1-2: Configuração e primeiros clientes\n`;
+      estrategias += `Semana 3-4: Otimização e expansão\n`;
+      estrategias += `Meta mensal: ${Math.min(meta, ganhoMaximo).toFixed(2)} AOA\n\n`;
+      
+      estrategias += `💡 DICA: Comece com uma estratégia, domine-a, depois expanda para outras áreas!`;
+
+      document.getElementById('estrategias-ganhos').innerText = estrategias;
+    }
+
+    // Painel de Automação
+    function criarAutomacao() {
+      const tipo = document.getElementById('tipo-automacao').value;
+      const frequencia = document.getElementById('frequencia-automacao').value;
+      const descricao = document.getElementById('descricao-automacao').value;
+
+      if (!tipo || !frequencia || !descricao) {
+        document.getElementById('resultado-automacao').innerText = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      let automacao = `🤖 AUTOMAÇÃO CRIADA COM SUCESSO!\n\n`;
+      automacao += `📋 DETALHES DA AUTOMAÇÃO:\n`;
+      automacao += `Tipo: ${tipo.replace('-', ' ').toUpperCase()}\n`;
+      automacao += `Frequência: ${frequencia.charAt(0).toUpperCase() + frequencia.slice(1)}\n`;
+      automacao += `Descrição: ${descricao}\n\n`;
+
+      automacao += `⚙️ CONFIGURAÇÃO SUGERIDA:\n\n`;
+
+      switch(tipo) {
+        case 'emails':
+          automacao += `📧 GESTÃO DE EMAILS:\n`;
+          automacao += `• Filtros automáticos por remetente e assunto\n`;
+          automacao += `• Respostas automáticas para emails comuns\n`;
+          automacao += `• Organização em pastas por categoria\n`;
+          automacao += `• Limpeza automática de spam e promoções\n`;
+          break;
+        case 'agenda':
+          automacao += `📅 ORGANIZAÇÃO DE AGENDA:\n`;
+          automacao += `• Bloqueio automático de horários para tarefas importantes\n`;
+          automacao += `• Lembretes inteligentes baseados em localização\n`;
+          automacao += `• Sincronização entre dispositivos\n`;
+          automacao += `• Sugestões de horários livres para reuniões\n`;
+          break;
+        case 'financas':
+          automacao += `💰 CONTROLE FINANCEIRO:\n`;
+          automacao += `• Categorização automática de gastos\n`;
+          automacao += `• Alertas de limite de gastos por categoria\n`;
+          automacao += `• Relatórios mensais automáticos\n`;
+          automacao += `• Lembretes de pagamento de contas\n`;
+          break;
+        case 'redes-sociais':
+          automacao += `📱 REDES SOCIAIS:\n`;
+          automacao += `• Agendamento de posts\n`;
+          automacao += `• Respostas automáticas para mensagens comuns\n`;
+          automacao += `• Análise automática de engajamento\n`;
+          automacao += `• Backup de conteúdo importante\n`;
+          break;
+        case 'backup':
+          automacao += `💾 BACKUP DE DADOS:\n`;
+          automacao += `• Backup automático de fotos e vídeos\n`;
+          automacao += `• Sincronização com nuvem\n`;
+          automacao += `• Verificação de integridade dos arquivos\n`;
+          automacao += `• Limpeza de arquivos duplicados\n`;
+          break;
+        case 'lembretes':
+          automacao += `🔔 LEMBRETES INTELIGENTES:\n`;
+          automacao += `• Lembretes baseados em localização\n`;
+          automacao += `• Notificações contextuais\n`;
+          automacao += `• Integração com calendário\n`;
+          automacao += `• Lembretes recorrentes personalizados\n`;
+          break;
+      }
+
+      automacao += `\n⏰ CRONOGRAMA DE EXECUÇÃO:\n`;
+      switch(frequencia) {
+        case 'diaria':
+          automacao += `• Execução: Todos os dias às 08:00\n`;
+          automacao += `• Verificação: A cada 4 horas\n`;
+          automacao += `• Relatório: Semanal\n`;
+          break;
+        case 'semanal':
+          automacao += `• Execução: Todas as segundas-feiras às 09:00\n`;
+          automacao += `• Verificação: Diária\n`;
+          automacao += `• Relatório: Mensal\n`;
+          break;
+        case 'mensal':
+          automacao += `• Execução: Todo dia 1º do mês às 10:00\n`;
+          automacao += `• Verificação: Semanal\n`;
+          automacao += `• Relatório: Trimestral\n`;
+          break;
+        case 'personalizada':
+          automacao += `• Execução: Conforme configuração personalizada\n`;
+          automacao += `• Verificação: Definida pelo usuário\n`;
+          automacao += `• Relatório: Sob demanda\n`;
+          break;
+      }
+
+      automacao += `\n🎯 BENEFÍCIOS ESPERADOS:\n`;
+      automacao += `• Economia de tempo: 2-5 horas por semana\n`;
+      automacao += `• Redução de erros manuais: 90%\n`;
+      automacao += `• Maior consistência nas tarefas\n`;
+      automacao += `• Foco em atividades mais importantes\n\n`;
+
+      automacao += `📱 FERRAMENTAS RECOMENDADAS:\n`;
+      automacao += `• IFTTT (If This Then That)\n`;
+      automacao += `• Zapier\n`;
+      automacao += `• Google Assistant/Siri\n`;
+      automacao += `• Tasker (Android)\n\n`;
+
+      automacao += `⚡ PRÓXIMOS PASSOS:\n`;
+      automacao += `1. Instalar ferramentas necessárias\n`;
+      automacao += `2. Configurar triggers e ações\n`;
+      automacao += `3. Testar automação em ambiente controlado\n`;
+      automacao += `4. Implementar gradualmente\n`;
+      automacao += `5. Monitorar e ajustar conforme necessário\n\n`;
+
+      automacao += `💡 DICA: Comece com automações simples e vá aumentando a complexidade gradualmente!`;
+
+      document.getElementById('resultado-automacao').innerText = automacao;
+    }
+
+    // Sistema de Denúncia Anônima
+    function enviarDenunciaAnonima() {
+      const tipo = document.getElementById('tipo-denuncia-anonima').value;
+      const local = document.getElementById('local-ocorrencia').value;
+      const data = document.getElementById('data-ocorrencia').value;
+      const descricao = document.getElementById('descricao-denuncia-anonima').value;
+      const evidencias = document.getElementById('evidencias').value;
+
+      if (!tipo || !local || !data || !descricao) {
+        document.getElementById('resultado-denuncia-anonima').innerText = 'Por favor, preencha todos os campos obrigatórios.';
+        return;
+      }
+
+      // Gerar ID único para a denúncia
+      const denunciaId = 'DEN' + Date.now().toString().slice(-8);
+
+      let resultado = `🛡️ DENÚNCIA RECEBIDA COM SUCESSO!\n\n`;
+      resultado += `📋 PROTOCOLO DE DENÚNCIA: ${denunciaId}\n`;
+      resultado += `📅 Data de Registro: ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+      
+      resultado += `✅ CONFIRMAÇÃO DOS DADOS:\n`;
+      resultado += `🏷️ Tipo: ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}\n`;
+      resultado += `📍 Local: ${local}\n`;
+      resultado += `📅 Data da Ocorrência: ${new Date(data).toLocaleDateString('pt-BR')}\n`;
+      resultado += `📝 Descrição: Registrada (${descricao.length} caracteres)\n`;
+      
+      if (evidencias) {
+        resultado += `📎 Evidências: Descritas\n`;
+      }
+
+      resultado += `\n🔒 GARANTIAS DE SEGURANÇA:\n`;
+      resultado += `• Sua identidade permanece completamente anônima\n`;
+      resultado += `• Dados criptografados e protegidos\n`;
+      resultado += `• Acesso restrito apenas a autoridades competentes\n`;
+      resultado += `• Protocolo de segurança internacional\n\n`;
+
+      resultado += `📋 PRÓXIMOS PASSOS:\n`;
+      resultado += `1. Sua denúncia será analisada em até 48 horas\n`;
+      resultado += `2. Caso necessário, investigação será iniciada\n`;
+      resultado += `3. Autoridades competentes serão notificadas\n`;
+      resultado += `4. Acompanhamento do caso será realizado\n\n`;
+
+      resultado += `📞 CANAIS DE ACOMPANHAMENTO:\n`;
+      resultado += `• Use o protocolo ${denunciaId} para consultas\n`;
+      resultado += `• Central de atendimento: 24 horas\n`;
+      resultado += `• Email: denuncias@estudio24.com\n\n`;
+
+      resultado += `⚠️ IMPORTANTE:\n`;
+      resultado += `• Denúncias falsas são crime\n`;
+      resultado += `• Mantenha o protocolo em local seguro\n`;
+      resultado += `• Não compartilhe informações da denúncia\n\n`;
+
+      resultado += `🙏 AGRADECIMENTO:\n`;
+      resultado += `Obrigado por contribuir para uma sociedade mais justa e transparente.\n`;
+      resultado += `Sua coragem em denunciar irregularidades ajuda a construir um mundo melhor.\n\n`;
+
+      resultado += `💪 "A injustiça em qualquer lugar é uma ameaça à justiça em todos os lugares." - Martin Luther King Jr.`;
+
+      document.getElementById('resultado-denuncia-anonima').innerText = resultado;
+
+      // Limpar formulário após envio
+      document.getElementById('tipo-denuncia-anonima').value = '';
+      document.getElementById('local-ocorrencia').value = '';
+      document.getElementById('data-ocorrencia').value = '';
+      document.getElementById('descricao-denuncia-anonima').value = '';
+      document.getElementById('evidencias').value = '';
+    }
+
+    // Jogo CyberRush
+    let gameState = {
+      isPlaying: false,
+      score: 0,
+      lives: 3,
+      level: 1,
+      player: { x: 50, y: 200, width: 30, height: 30, speed: 5 },
+      obstacles: [],
+      powerups: [],
+      particles: [],
+      keys: {},
+      gameSpeed: 2,
+      lastObstacle: 0,
+      lastPowerup: 0
+    };
+
+    let canvas, ctx, gameLoop;
+
+    function iniciarJogo() {
+      canvas = document.getElementById('gameCanvas');
+      ctx = canvas.getContext('2d');
+      
+      // Mostrar canvas e HUD, esconder menu
+      document.getElementById('game-menu').style.display = 'none';
+      document.getElementById('gameCanvas').style.display = 'block';
+      document.getElementById('game-hud').style.display = 'block';
+      document.getElementById('game-over').style.display = 'none';
+      
+      // Reset game state
+      gameState = {
+        isPlaying: true,
+        score: 0,
+        lives: 3,
+        level: 1,
+        player: { x: 50, y: 200, width: 30, height: 30, speed: 5 },
+        obstacles: [],
+        powerups: [],
+        particles: [],
+        keys: {},
+        gameSpeed: 2,
+        lastObstacle: 0,
+        lastPowerup: 0
+      };
+      
+      updateHUD();
+      
+      // Event listeners
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('keyup', handleKeyUp);
+      
+      // Start game loop
+      gameLoop = setInterval(updateGame, 1000/60); // 60 FPS
+    }
+
+    function handleKeyDown(e) {
+      gameState.keys[e.code] = true;
+      e.preventDefault();
+    }
+
+    function handleKeyUp(e) {
+      gameState.keys[e.code] = false;
+      e.preventDefault();
+    }
+
+    function updateGame() {
+      if (!gameState.isPlaying) return;
+      
+      // Update player
+      updatePlayer();
+      
+      // Update obstacles
+      updateObstacles();
+      
+      // Update powerups
+      updatePowerups();
+      
+      // Update particles
+      updateParticles();
+      
+      // Check collisions
+      checkCollisions();
+      
+      // Spawn new objects
+      spawnObjects();
+      
+      // Update score and level
+      gameState.score += 1;
+      if (gameState.score % 1000 === 0) {
+        gameState.level++;
+        gameState.gameSpeed += 0.5;
+      }
+      
+      // Render
+      render();
+      
+      // Update HUD
+      updateHUD();
+    }
+
+    function updatePlayer() {
+      // Movement
+      if (gameState.keys['ArrowUp'] || gameState.keys['KeyW']) {
+        gameState.player.y = Math.max(0, gameState.player.y - gameState.player.speed);
+      }
+      if (gameState.keys['ArrowDown'] || gameState.keys['KeyS']) {
+        gameState.player.y = Math.min(canvas.height - gameState.player.height, gameState.player.y + gameState.player.speed);
+      }
+      if (gameState.keys['ArrowLeft'] || gameState.keys['KeyA']) {
+        gameState.player.x = Math.max(0, gameState.player.x - gameState.player.speed);
+      }
+      if (gameState.keys['ArrowRight'] || gameState.keys['KeyD']) {
+        gameState.player.x = Math.min(canvas.width - gameState.player.width, gameState.player.x + gameState.player.speed);
+      }
+    }
+
+    function updateObstacles() {
+      for (let i = gameState.obstacles.length - 1; i >= 0; i--) {
+        let obstacle = gameState.obstacles[i];
+        obstacle.x -= gameState.gameSpeed;
+        
+        if (obstacle.x + obstacle.width < 0) {
+          gameState.obstacles.splice(i, 1);
+        }
+      }
+    }
+
+    function updatePowerups() {
+      for (let i = gameState.powerups.length - 1; i >= 0; i--) {
+        let powerup = gameState.powerups[i];
+        powerup.x -= gameState.gameSpeed;
+        powerup.rotation += 0.1;
+        
+        if (powerup.x + powerup.width < 0) {
+          gameState.powerups.splice(i, 1);
+        }
+      }
+    }
+
+    function updateParticles() {
+      for (let i = gameState.particles.length - 1; i >= 0; i--) {
+        let particle = gameState.particles[i];
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.life--;
+        
+        if (particle.life <= 0) {
+          gameState.particles.splice(i, 1);
+        }
+      }
+    }
+
+    function spawnObjects() {
+      // Spawn obstacles
+      if (Date.now() - gameState.lastObstacle > 1500 - (gameState.level * 50)) {
+        spawnObstacle();
+        gameState.lastObstacle = Date.now();
+      }
+      
+      // Spawn powerups
+      if (Date.now() - gameState.lastPowerup > 5000) {
+        if (Math.random() < 0.3) {
+          spawnPowerup();
+        }
+        gameState.lastPowerup = Date.now();
+      }
+    }
+
+    function spawnObstacle() {
+      let obstacle = {
+        x: canvas.width,
+        y: Math.random() * (canvas.height - 60),
+        width: 20 + Math.random() * 30,
+        height: 20 + Math.random() * 40,
+        type: Math.random() < 0.5 ? 'red' : 'orange'
+      };
+      gameState.obstacles.push(obstacle);
+    }
+
+    function spawnPowerup() {
+      let powerup = {
+        x: canvas.width,
+        y: Math.random() * (canvas.height - 30),
+        width: 25,
+        height: 25,
+        type: Math.random() < 0.5 ? 'health' : 'points',
+        rotation: 0
+      };
+      gameState.powerups.push(powerup);
+    }
+
+    function checkCollisions() {
+      // Check obstacle collisions
+      for (let obstacle of gameState.obstacles) {
+        if (isColliding(gameState.player, obstacle)) {
+          // Create explosion particles
+          createExplosion(gameState.player.x + gameState.player.width/2, gameState.player.y + gameState.player.height/2);
+          
+          gameState.lives--;
+          if (gameState.lives <= 0) {
+            gameOver();
+            return;
+          }
+          
+          // Remove obstacle and give brief invincibility
+          gameState.obstacles.splice(gameState.obstacles.indexOf(obstacle), 1);
+          break;
+        }
+      }
+      
+      // Check powerup collisions
+      for (let i = gameState.powerups.length - 1; i >= 0; i--) {
+        let powerup = gameState.powerups[i];
+        if (isColliding(gameState.player, powerup)) {
+          if (powerup.type === 'health') {
+            gameState.lives = Math.min(5, gameState.lives + 1);
+          } else if (powerup.type === 'points') {
+            gameState.score += 500;
+          }
+          
+          // Create pickup particles
+          createPickupEffect(powerup.x + powerup.width/2, powerup.y + powerup.height/2, powerup.type);
+          
+          gameState.powerups.splice(i, 1);
+        }
+      }
+    }
+
+    function isColliding(rect1, rect2) {
+      return rect1.x < rect2.x + rect2.width &&
+             rect1.x + rect1.width > rect2.x &&
+             rect1.y < rect2.y + rect2.height &&
+             rect1.y + rect1.height > rect2.y;
+    }
+
+    function createExplosion(x, y) {
+      for (let i = 0; i < 15; i++) {
+        gameState.particles.push({
+          x: x,
+          y: y,
+          vx: (Math.random() - 0.5) * 10,
+          vy: (Math.random() - 0.5) * 10,
+          life: 30,
+          color: Math.random() < 0.5 ? '#ff6b6b' : '#ffa500'
+        });
+      }
+    }
+
+    function createPickupEffect(x, y, type) {
+      let color = type === 'health' ? '#06ffa5' : '#00d4ff';
+      for (let i = 0; i < 10; i++) {
+        gameState.particles.push({
+          x: x,
+          y: y,
+          vx: (Math.random() - 0.5) * 6,
+          vy: (Math.random() - 0.5) * 6,
+          life: 20,
+          color: color
+        });
+      }
+    }
+
+    function render() {
+      // Clear canvas with gradient background
+      let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#0a0a0f');
+      gradient.addColorStop(1, '#1a1a2e');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw grid effect
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.1)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+      
+      // Draw player
+      ctx.fillStyle = '#00d4ff';
+      ctx.shadowColor = '#00d4ff';
+      ctx.shadowBlur = 10;
+      ctx.fillRect(gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+      ctx.shadowBlur = 0;
+      
+      // Draw obstacles
+      for (let obstacle of gameState.obstacles) {
+        ctx.fillStyle = obstacle.type === 'red' ? '#ff6b6b' : '#ffa500';
+        ctx.shadowColor = obstacle.type === 'red' ? '#ff6b6b' : '#ffa500';
+        ctx.shadowBlur = 5;
+        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        ctx.shadowBlur = 0;
+      }
+      
+      // Draw powerups
+      for (let powerup of gameState.powerups) {
+        ctx.save();
+        ctx.translate(powerup.x + powerup.width/2, powerup.y + powerup.height/2);
+        ctx.rotate(powerup.rotation);
+        
+        ctx.fillStyle = powerup.type === 'health' ? '#06ffa5' : '#8b5cf6';
+        ctx.shadowColor = powerup.type === 'health' ? '#06ffa5' : '#8b5cf6';
+        ctx.shadowBlur = 8;
+        ctx.fillRect(-powerup.width/2, -powerup.height/2, powerup.width, powerup.height);
+        ctx.shadowBlur = 0;
+        
+        ctx.restore();
+      }
+      
+      // Draw particles
+      for (let particle of gameState.particles) {
+        ctx.fillStyle = particle.color;
+        ctx.globalAlpha = particle.life / 30;
+        ctx.fillRect(particle.x - 2, particle.y - 2, 4, 4);
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function updateHUD() {
+      document.getElementById('score').textContent = gameState.score;
+      document.getElementById('lives').textContent = gameState.lives;
+      document.getElementById('level').textContent = gameState.level;
+    }
+
+    function gameOver() {
+      gameState.isPlaying = false;
+      clearInterval(gameLoop);
+      
+      document.getElementById('final-score').textContent = gameState.score;
+      document.getElementById('game-over').style.display = 'flex';
+      
+      // Remove event listeners
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
+    }
+
+    function reiniciarJogo() {
+      iniciarJogo();
+    }
+
+    function voltarMenuJogo() {
+      if (gameLoop) {
+        clearInterval(gameLoop);
+      }
+      
+      document.getElementById('game-menu').style.display = 'flex';
+      document.getElementById('gameCanvas').style.display = 'none';
+      document.getElementById('game-hud').style.display = 'none';
+      document.getElementById('game-over').style.display = 'none';
+      
+      gameState.isPlaying = false;
+      
+      // Remove event listeners
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(10, 10, 15, 0.95)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 15, 0.9)';
+      }
+    });
+  </script>
+</body>
+</html>
+
